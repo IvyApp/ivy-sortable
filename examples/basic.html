@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+  <head>
+    <title>ivy-sortable demo</title>
+    <link rel="stylesheet" href="../bower_components/jquery-ui/themes/smoothness/jquery-ui.css">
+    <style>
+      .ui-sortable {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 60%;
+      }
+      .ui-sortable li {
+        margin: 0 3px 3px 3px;
+        padding: 0.4em;
+        padding-left: 1.5em;
+        height: 18px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <script type="text/x-handlebars" id="index">
+      {{#ivy-sortable model itemClassNames="ui-state-default"}}
+        Greetings {{name}}
+      {{/ivy-sortable}}
+
+      <p>The list is: {{names}}</p>
+    </script>
+
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/handlebars/handlebars.js"></script>
+    <script src="../bower_components/ember/ember.js"></script>
+    <script src="../bower_components/jquery-ui/ui/core.js"></script>
+    <script src="../bower_components/jquery-ui/ui/widget.js"></script>
+    <script src="../bower_components/jquery-ui/ui/mouse.js"></script>
+    <script src="../bower_components/jquery-ui/ui/sortable.js"></script>
+    <script src="../dist/globals/main.js"></script>
+    <script>
+      App = Ember.Application.create();
+      App.initializer(ivy.sortable.initializer);
+
+      App.IndexController = Ember.ArrayController.extend({
+        model: Ember.A([
+          Ember.Object.create({ name: 'Tyrion' }),
+          Ember.Object.create({ name: 'Cersei' }),
+          Ember.Object.create({ name: 'Jaime' })
+        ]),
+
+        names: Ember.computed(function() {
+          return this.mapBy('name').join(', ');
+        }).property('@each.name')
+      });
+    </script>
+  </body>
+</html>
