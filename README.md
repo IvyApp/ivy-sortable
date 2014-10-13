@@ -1,5 +1,7 @@
 # ivy-sortable
 
+[![Build Status](https://travis-ci.org/IvyApp/ivy-sortable.svg?branch=master)](https://travis-ci.org/IvyApp/ivy-sortable)
+
 An [Ember][1] component for [jQuery UI's Sortable Widget][2].
 
 ## Installation
