@@ -1,23 +1,23 @@
----
 language: node_js
-
 sudo: false
-
 after_success:
-  - npm run-script publish-build
-
+- npm run-script publish-build
 cache:
   directories:
-    - node_modules
-
+  - node_modules
 before_install:
-  - "npm config set spin false"
-  - "npm install -g npm@^2"
-
+- npm config set spin false
+- npm install -g npm@^2
 install:
-  - npm install -g bower
-  - npm install
-  - bower install
-
+- npm install -g bower
+- npm install
+- bower install
 script:
-  - npm test
+- npm test
+notifications:
+  email: false
+  slack:
+    on_success: change
+    on_failure: always
+    rooms:
+    - secure: bVqgdqmTdZoQ7cvzKVYC0/WpZVhhDorEURioBXyPqao0Pb1c8wHNZ6OmqNfbbns/H2VkZEZ/F0rPtUc65T5XtEaPxE75wcTKe6oBzpb8Xaea2byIdADcCLD5YKBKZXQyK5olgDzwhdkVRg13Ro01Q/gVmdi0MZAZtmKMZFq+tMw=
