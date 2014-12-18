@@ -1,0 +1,16 @@
+{
+  "name": "ivy-sortable",
+  "version": "VERSION_STRING_PLACEHOLDER",
+  "authors": [
+    "Dray Lacy"
+  ],
+  "description": "An Ember component for jQuery UI's Sortable Widget.",
+  "main": "./ivy-sortable-VERSION_STRING_PLACEHOLDER.js",
+  "keywords": [
+    "ember"
+  ],
+  "dependencies": {
+    "ember": ">= 1.3.0",
+    "jquery-ui": "~> 1.11.2"
+  }
+}
