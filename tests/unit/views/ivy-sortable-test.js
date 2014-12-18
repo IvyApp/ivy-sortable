@@ -1,3 +1,6 @@
+import Ember from 'ember';
+import { moduleFor, test } from 'ember-qunit';
+
 var people, containerView, view;
 
 moduleFor('view:ivy-sortable', 'ivy.sortable.IvySortableView', {
@@ -21,7 +24,7 @@ moduleFor('view:ivy-sortable', 'ivy.sortable.IvySortableView', {
 
     Ember.run(function() {
       containerView.pushObject(view);
-      containerView.appendTo('#qunit-fixture');
+      containerView.appendTo('#ember-testing');
     });
   },
 
