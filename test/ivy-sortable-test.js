@@ -25,7 +25,7 @@ moduleFor('view:ivy-sortable', 'ivy.sortable.IvySortableView', {
     });
   },
 
-  teardown:function() {
+  teardown: function() {
     Ember.run(containerView, 'destroy');
   }
 });
