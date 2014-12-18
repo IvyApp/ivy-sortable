@@ -3,7 +3,7 @@ import { moduleFor, test } from 'ember-qunit';
 
 var people, containerView, view;
 
-moduleFor('view:ivy-sortable', 'ivy.sortable.IvySortableView', {
+moduleFor('view:ivy-sortable', 'view:ivy-sortable', {
   setup: function() {
     people = Ember.A([
       { name: 'Tyrion' },
