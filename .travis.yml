@@ -1,0 +1,26 @@
+language: node_js
+sudo: false
+after_success:
+- npm run-script publish-build
+cache:
+  directories:
+  - node_modules
+before_install:
+- npm config set spin false
+- npm install -g npm@^2
+install:
+- npm install -g bower
+- npm install
+- bower install
+script:
+- npm test
+env:
+  global:
+  - secure: quspYgz+EPvSa5V5ekOZiendjzfq6G8PhTvtzKUCJou/GsaBvtcydc+9HAdTH9ZDQmuGTK7JHtDN0cv+iW5O6sca89brDEk8Si9B+R1QBPMsf1neykudjuXJiR3vo4E/moRXptBuRSwkENh396+bHzjQbMLx0NM8Zdemi4LNmW8=
+notifications:
+  email: false
+  slack:
+    on_success: change
+    on_failure: always
+    rooms:
+    - secure: bVqgdqmTdZoQ7cvzKVYC0/WpZVhhDorEURioBXyPqao0Pb1c8wHNZ6OmqNfbbns/H2VkZEZ/F0rPtUc65T5XtEaPxE75wcTKe6oBzpb8Xaea2byIdADcCLD5YKBKZXQyK5olgDzwhdkVRg13Ro01Q/gVmdi0MZAZtmKMZFq+tMw=
