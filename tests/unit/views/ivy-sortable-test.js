@@ -101,3 +101,37 @@ test('should trigger moved action after successful drag', function() {
 
   view.$('li:eq(0)').simulate('drag', { dy: 22 });
 });
+
+function optionTest(key, beforeValue, afterValue) {
+  test('should update jQuery UI ' + key + ' option when ' + key + ' property changes', function() {
+    equal(view.$().sortable('option', key), beforeValue,
+          'precond - initial value of ' + key + ' option is correct');
+
+    Ember.run(function() {
+      view.set(key, afterValue);
+    });
+
+    equal(view.$().sortable('option', key), afterValue,
+          key + ' option is updated after ' + key + ' property is changed');
+  });
+}
+
+optionTest('axis', false, 'x');
+optionTest('containment', false, 'parent');
+optionTest('cursor', 'auto', 'move');
+optionTest('cursorAt', false, { left: 5 });
+optionTest('delay', 0, 150);
+optionTest('disabled', false, true);
+optionTest('distance', 1, 5);
+optionTest('forceHelperSize', false, true);
+optionTest('forcePlaceholderSize', false, true);
+optionTest('grid', false, [20, 10]);
+optionTest('helper', 'original', 'clone');
+optionTest('opacity', false, 0.5);
+optionTest('placeholder', false, 'sortable-placeholder');
+optionTest('revert', false, true);
+optionTest('scroll', true, false);
+optionTest('scrollSensitivity', 20, 10);
+optionTest('scrollSpeed', 20, 40);
+optionTest('tolerance', 'intersect', 'pointer');
+optionTest('zIndex', 1000, 9999);

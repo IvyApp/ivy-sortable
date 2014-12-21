@@ -58,6 +58,30 @@ App.ApplicationController = Ember.Controller.extend({
 });
 ```
 
+The following
+[jQuery UI Sortable options](http://api.jqueryui.com/sortable/#options) are
+supported:
+
+  * `axis`
+  * `containment`
+  * `cursor`
+  * `cursorAt`
+  * `delay`
+  * `disabled`
+  * `distance`
+  * `forceHelperSize`
+  * `forcePlaceholderSize`
+  * `grid`
+  * `helper`
+  * `opacity`
+  * `placeholder`
+  * `revert`
+  * `scroll`
+  * `scrollSensitivity`
+  * `scrollSpeed`
+  * `tolerance`
+  * `zIndex`
+
 ### Advanced Usage
 
 In case you need more control, `ivy-sortable` is functionally equivalent to:
