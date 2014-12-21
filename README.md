@@ -27,27 +27,27 @@ bower install --save ivy-sortable
 
 Use the `ivy-sortable` helper in much the same way you'd use Ember's built-in
 `each` helper.
- 
+
 ```handlebars
 {{#ivy-sortable people}}
   Greetings, {{name}}!
 {{/ivy-sortable}}
 ```
- 
+
 This will output a sortable list, and dragging and dropping items will reorder
 them in the corresponding array (in this case, `people`). There is also
 a `moved` action that will fire after an item has been moved, in case you want
 to take further action:
- 
+
 ```handlebars
 {{#ivy-sortable people moved="movePerson"}}
   Greetings, {{name}}!
 {{/ivy-sortable}}
 ```
- 
+
 In this case the `movePerson` handler will be called with the item that has
 been moved, and its old and new index:
- 
+
 ```js
 App.ApplicationController = Ember.Controller.extend({
   actions: {
@@ -57,17 +57,17 @@ App.ApplicationController = Ember.Controller.extend({
   }
 });
 ```
- 
+
 ### Advanced Usage
- 
+
 In case you need more control, `ivy-sortable` is functionally equivalent to:
- 
+
 ```handlebars
 {{#collection "ivy-sortable" content=people}}
   Greetings, {{name}}!
 {{/collection}}
 ```
- 
+
 Any options you can use with `Ember.CollectionView` can also be used with
 `ivy-sortable`. In fact, under the hood `IvySortableView` is just an
 `Ember.CollectionView` subclass.
