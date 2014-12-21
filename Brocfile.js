@@ -20,11 +20,9 @@ var app = new EmberAddon();
 // along with the exports of each module as its value.
 app.import(app.bowerDirectory + '/jquery-simulate/jquery.simulate.js', { type: 'test' });
 
-var themeTrees = ['base', 'smoothness'].map(function(theme) {
-  return pickFiles(app.bowerDirectory + '/jquery-ui/themes/' + theme, {
-    destDir: '/assets/themes/' + theme,
-    srcDir: '/'
-  });
+var bootstrapTree = pickFiles(app.bowerDirectory + '/bootstrap/dist', {
+  destDir: '/assets',
+  srcDir: '/'
 });
 
-module.exports = app.toTree(themeTrees);
+module.exports = app.toTree([bootstrapTree]);

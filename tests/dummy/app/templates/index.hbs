@@ -1,5 +1,20 @@
-{{#ivy-sortable model itemClassNames="ui-state-default"}}
-  Greetings {{name}}
-{{/ivy-sortable}}
+<h1 class="page-header">ivy-sortable</h1>
 
-<p>The list is: {{names}}</p>
+<div class="row">
+  <div class="col-sm-6">
+    <p>Drag the items below to rearrange them.</p>
+
+    {{#ivy-sortable model class="list-group" cursor="move" itemClassNames="list-group-item sortable-item"}}
+      {{title}}
+    {{/ivy-sortable}}
+  </div>
+  <div class="col-sm-6">
+    <p>The list is:</p>
+
+    <ol>
+      {{#each}}
+        <li>{{title}}</li>
+      {{/each}}
+    </ol>
+  </div>
+</div>
