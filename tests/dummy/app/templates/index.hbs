@@ -12,8 +12,8 @@
     <p>The list is:</p>
 
     <ol>
-      {{#each}}
-        <li>{{title}}</li>
+      {{#each movie in this}}
+        <li>{{movie.title}}</li>
       {{/each}}
     </ol>
   </div>
