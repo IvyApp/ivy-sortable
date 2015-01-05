@@ -5,7 +5,7 @@
     "Dray Lacy"
   ],
   "description": "An Ember component for jQuery UI's Sortable Widget.",
-  "main": "./ivy-sortable-VERSION_STRING_PLACEHOLDER.js",
+  "main": "./ivy-sortable.js",
   "keywords": [
     "ember"
   ],
