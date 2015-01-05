@@ -2,6 +2,8 @@
 
 ## master
 
+## 0.3.0
+
 * Remove version suffix from ivy-sortable.js.
 
 ## 0.2.1
