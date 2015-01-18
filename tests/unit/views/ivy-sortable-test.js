@@ -37,6 +37,17 @@ test('should render the template for each item in an array', function() {
   equal(view.$().text(), 'TyrionCersei');
 });
 
+test('should update the view if content is replaced', function() {
+  Ember.run(function() {
+    view.set('content', Ember.A([
+      { name: 'Joffrey' },
+      { name: 'Sansa' }
+    ]));
+  });
+
+  equal(view.$().text(), 'JoffreySansa');
+});
+
 test('should update the view if an item is added', function() {
   Ember.run(function() {
     people.pushObject({ name: 'Tywin' });
