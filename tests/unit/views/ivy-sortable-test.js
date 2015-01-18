@@ -34,7 +34,9 @@ moduleFor('view:ivy-sortable', 'view:ivy-sortable', {
 });
 
 test('should render the template for each item in an array', function() {
-  equal(view.$().text(), 'TyrionCersei');
+  var items = view.$('li.ui-sortable-handle');
+  equal(items.length, 2);
+  equal(items.text(), 'TyrionCersei');
 });
 
 test('should update the view if content is replaced', function() {
@@ -45,7 +47,9 @@ test('should update the view if content is replaced', function() {
     ]));
   });
 
-  equal(view.$().text(), 'JoffreySansa');
+  var items = view.$('li.ui-sortable-handle');
+  equal(items.length, 2);
+  equal(items.text(), 'JoffreySansa');
 });
 
 test('should update the view if an item is added', function() {

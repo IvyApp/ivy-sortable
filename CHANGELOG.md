@@ -2,6 +2,11 @@
 
 ## master
 
+* Call sortable's `refresh` method after content changes. This fixes an issue
+  where the "ui-sortable-handle" class would not be added to newly-inserted
+  list items. See [#2](https://github.com/IvyApp/ivy-sortable/issues/2) for
+  further details.
+
 ## 0.3.0
 
 * Remove version suffix from ivy-sortable.js.
