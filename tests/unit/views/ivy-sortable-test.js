@@ -117,6 +117,17 @@ test('should trigger moved action after successful drag', function() {
   view.$('li:eq(0)').simulate('drag', { dy: 22 });
 });
 
+test('should not refresh after destruction', function() {
+  expect(1);
+
+  Ember.run(function() {
+    people.pushObject({ name: 'Arya' });
+    containerView.destroy();
+  });
+
+  ok(true, 'no error was thrown');
+});
+
 function optionTest(key, beforeValue, afterValue) {
   test('should update jQuery UI ' + key + ' option when ' + key + ' property changes', function() {
     equal(view.$().sortable('option', key), beforeValue,

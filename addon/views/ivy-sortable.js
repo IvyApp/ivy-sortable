@@ -160,6 +160,7 @@ export default Ember.CollectionView.extend(Ember.TargetActionSupport, {
   },
 
   _refreshSortable: function() {
+    if (this.isDestroying) { return; }
     this.$().sortable('refresh');
   }
 });
