@@ -2,6 +2,10 @@
 
 ## master
 
+## 1.0.0-beta.2
+
+* Check `isDestroying` before refreshing the sortable.
+
 ## 1.0.0-beta.1
 
 * Call sortable's `refresh` method after content changes. This fixes an issue
