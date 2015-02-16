@@ -1,6 +1,6 @@
 {
   "name": "ivy-sortable",
-  "version": "1.0.0-beta.2+canary",
+  "version": "1.0.0-beta.2",
   "description": "Ember helper for interacting with jQuery UI's Sortable module.",
   "directories": {
     "doc": "doc",
