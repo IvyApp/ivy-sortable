@@ -4,9 +4,9 @@
   <div class="col-sm-6">
     <p>Drag the items below to rearrange them.</p>
 
-    {{#ivy-sortable model class="list-group" cursor="move" itemClassNames="list-group-item sortable-item"}}
+    {{#collection "ivy-sortable" class="list-group" content=model cursor="move" itemClassNames="list-group-item sortable-item"}}
       {{title}}
-    {{/ivy-sortable}}
+    {{/collection}}
   </div>
   <div class="col-sm-6">
     <p>The list is:</p>

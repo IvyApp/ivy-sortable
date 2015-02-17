@@ -3,6 +3,11 @@ import Ember from 'ember';
 export default function(path, options) {
   var ctx, helperName = 'ivy-sortable';
 
+  Ember.deprecate(
+    'Using the {{ivy-sortable}} helper is deprecated. ' +
+    'Please use the collection form ' +
+    '(`{{#collection "ivy-sortable" content=foo}}`) instead.');
+
   if (arguments.length === 1) {
     options = path;
     path = 'this';
