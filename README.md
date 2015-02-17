@@ -25,13 +25,12 @@ bower install --save ivy-sortable
 
 ## Usage
 
-Use the `ivy-sortable` helper in much the same way you'd use Ember's built-in
-`each` helper.
+Use the `ivy-sortable` view with Ember's built-in `collection` helper.
 
 ```handlebars
-{{#ivy-sortable people}}
+{{#collection "ivy-sortable" content=people}}
   Greetings, {{name}}!
-{{/ivy-sortable}}
+{{/collection}}
 ```
 
 This will output a sortable list, and dragging and dropping items will reorder
@@ -40,9 +39,9 @@ a `moved` action that will fire after an item has been moved, in case you want
 to take further action:
 
 ```handlebars
-{{#ivy-sortable people moved="movePerson"}}
+{{#collection content=people moved="movePerson"}}
   Greetings, {{name}}!
-{{/ivy-sortable}}
+{{/collection}}
 ```
 
 In this case the `movePerson` handler will be called with the item that has
@@ -81,20 +80,6 @@ supported:
   * `scrollSpeed`
   * `tolerance`
   * `zIndex`
-
-### Advanced Usage
-
-In case you need more control, `ivy-sortable` is functionally equivalent to:
-
-```handlebars
-{{#collection "ivy-sortable" content=people}}
-  Greetings, {{name}}!
-{{/collection}}
-```
-
-Any options you can use with `Ember.CollectionView` can also be used with
-`ivy-sortable`. In fact, under the hood `IvySortableView` is just an
-`Ember.CollectionView` subclass.
 
 ## Contributing
 
