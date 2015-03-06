@@ -1,6 +1,9 @@
 # ivy-sortable
 
-## master
+## 1.0.0-beta.4
+
+* Add repo URL to package.json.
+* Fix potential Morph errors when the content array is modified.
 
 ## 1.0.0-beta.3
 
