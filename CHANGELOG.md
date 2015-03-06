@@ -1,6 +1,6 @@
 # ivy-sortable
 
-## master
+## 1.0.0-beta.3
 
 * Deprecate the `{{ivy-sortable}}` helper.
 
