@@ -24,7 +24,7 @@ export default Ember.CollectionView.extend(Ember.TargetActionSupport, {
   initSortable: Ember.on('didInsertElement', function() {
     var opts = {};
 
-    Ember.EnumerableUtils.forEach(['start', 'update'], function(callback) {
+    Ember.EnumerableUtils.forEach(['start', 'stop'], function(callback) {
       opts[callback] = Ember.run.bind(this, callback);
     }, this);
 
@@ -49,10 +49,8 @@ export default Ember.CollectionView.extend(Ember.TargetActionSupport, {
     if (content) {
       var item = content.objectAt(oldIndex);
 
-      this._disableArrayObservers(content, function() {
-        content.removeAt(oldIndex);
-        content.insertAt(newIndex, item);
-      });
+      content.removeAt(oldIndex);
+      content.insertAt(newIndex, item);
 
       this.sendAction('moved', item, oldIndex, newIndex);
     }
@@ -94,17 +92,22 @@ export default Ember.CollectionView.extend(Ember.TargetActionSupport, {
     ui.item.data('oldIndex', ui.item.index());
   },
 
+  stop: function(event, ui) {
+    var oldIndex = ui.item.data('oldIndex');
+    var newIndex = ui.item.index();
+
+    // Ember.CollectionView wants to control the DOM, so make sure jQuery UI
+    // isn't moving elements around without it knowing. Calling cancel here
+    // will revert the item to its prior position.
+    this.$().sortable('cancel');
+
+    this.move(oldIndex, newIndex);
+  },
+
   targetObject: Ember.computed(function() {
     var parentView = this.get('_parentView');
     return parentView ? parentView.get('controller') : null;
   }).property('_parentView'),
-
-  update: function(event, ui) {
-    var oldIndex = ui.item.data('oldIndex');
-    var newIndex = ui.item.index();
-
-    this.move(oldIndex, newIndex);
-  },
 
   _bindSortableOption: function(key) {
     this.addObserver(key, this, this._optionDidChange);
@@ -144,15 +147,6 @@ export default Ember.CollectionView.extend(Ember.TargetActionSupport, {
 
     var len = content ? Ember.get(content, 'length') : 0;
     this.arrayWillChangeAfterElementInserted(content, 0, len);
-  },
-
-  _disableArrayObservers: function(content, callback) {
-    content.removeArrayObserver(this);
-    try {
-      callback.call(this);
-    } finally {
-      content.addArrayObserver(this);
-    }
   },
 
   _optionDidChange: function(sender, key) {

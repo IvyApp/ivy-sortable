@@ -77,6 +77,20 @@ test('should update the view if an item is replaced', function() {
   equal(view.$().text(), 'JaimeCersei');
 });
 
+test('should not cause Morph errors if an item is dragged and then moved', function() {
+  view.$('li:eq(0)').simulate('drag', { dy: 22 });
+
+  equal(view.$().text(), 'CerseiTyrion');
+
+  Ember.run(function() {
+    var tyrion = people.objectAt(1);
+    people.removeAt(1);
+    people.insertAt(0, tyrion);
+  });
+
+  equal(view.$().text(), 'TyrionCersei');
+});
+
 test('should update the view if an item is dragged', function() {
   view.$('li:eq(0)').simulate('drag', { dy: 22 });
 
