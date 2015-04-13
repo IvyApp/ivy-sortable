@@ -71,6 +71,7 @@ supported:
   * `forceHelperSize`
   * `forcePlaceholderSize`
   * `grid`
+  * `handle`
   * `helper`
   * `opacity`
   * `placeholder`

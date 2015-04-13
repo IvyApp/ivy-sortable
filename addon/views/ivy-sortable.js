@@ -32,7 +32,7 @@ export default Ember.CollectionView.extend(Ember.TargetActionSupport, {
 
     Ember.EnumerableUtils.forEach([
       'axis', 'containment', 'cursor', 'cursorAt', 'delay', 'disabled',
-      'distance', 'forceHelperSize', 'forcePlaceholderSize', 'grid', 'helper',
+      'distance', 'forceHelperSize', 'forcePlaceholderSize', 'grid', 'handle', 'helper',
       'opacity', 'placeholder', 'revert', 'scroll', 'scrollSensitivity',
       'scrollSpeed', 'tolerance', 'zIndex'
     ], this._bindSortableOption, this);
