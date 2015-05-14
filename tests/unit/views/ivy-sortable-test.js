@@ -166,6 +166,7 @@ optionTest('distance', 1, 5);
 optionTest('forceHelperSize', false, true);
 optionTest('forcePlaceholderSize', false, true);
 optionTest('grid', false, [20, 10]);
+optionTest('handle', false, '.handle');
 optionTest('helper', 'original', 'clone');
 optionTest('opacity', false, 0.5);
 optionTest('placeholder', false, 'sortable-placeholder');
