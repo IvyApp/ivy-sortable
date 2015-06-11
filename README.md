@@ -55,8 +55,8 @@ The following [jQuery UI Sortable options](http://api.jqueryui.com/sortable/#opt
 
   * `axis`
   * `containment`
-  * `cursor`
   * `cursorAt`
+  * `cursor`
   * `delay`
   * `disabled`
   * `distance`
@@ -68,9 +68,9 @@ The following [jQuery UI Sortable options](http://api.jqueryui.com/sortable/#opt
   * `opacity`
   * `placeholder`
   * `revert`
-  * `scroll`
   * `scrollSensitivity`
   * `scrollSpeed`
+  * `scroll`
   * `tolerance`
   * `zIndex`
 
