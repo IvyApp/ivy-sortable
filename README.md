@@ -82,6 +82,18 @@ supported:
   * `tolerance`
   * `zIndex`
 
+If there's an option that you need that isn't supported, you can easily add it in your own app by extending from 'ivy-sortable/views/ivy-sortable' and adding it to the `uiOptions` property like so:
+
+```js
+import IvySortableView from 'ivy-sortable/views/ivy-sortable';
+
+export default IvySortableView.extend({
+  uiOptions: [
+    'someOtherOption'
+  ]
+});
+```
+
 ## Contributing
 
 Fork this repo, make a new branch, and send a pull request. Make sure your
