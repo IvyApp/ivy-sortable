@@ -5,6 +5,15 @@ export default Ember.CollectionView.extend(Ember.TargetActionSupport, {
 
   tagName: 'ul',
 
+  concatenatedProperties: ['uiOptions'],
+
+  uiOptions: [
+    'axis', 'containment', 'cursor', 'cursorAt', 'delay', 'disabled',
+    'distance', 'forceHelperSize', 'forcePlaceholderSize', 'grid', 'handle',
+    'helper', 'opacity', 'placeholder', 'revert', 'scroll',
+    'scrollSensitivity', 'scrollSpeed', 'tolerance', 'zIndex'
+  ],
+
   arrayDidChangeAfterElementInserted: function() {
     Ember.run.scheduleOnce('afterRender', this, this._refreshSortable);
   },
@@ -30,12 +39,7 @@ export default Ember.CollectionView.extend(Ember.TargetActionSupport, {
 
     this.$().sortable(opts);
 
-    Ember.EnumerableUtils.forEach([
-      'axis', 'containment', 'cursor', 'cursorAt', 'delay', 'disabled',
-      'distance', 'forceHelperSize', 'forcePlaceholderSize', 'grid', 'handle',
-      'helper', 'opacity', 'placeholder', 'revert', 'scroll', 'scrollSensitivity',
-      'scrollSpeed', 'tolerance', 'zIndex'
-    ], this._bindSortableOption, this);
+    Ember.EnumerableUtils.forEach(this.get('uiOptions'), this._bindSortableOption, this);
 
     Ember.addBeforeObserver(this, 'content', this, this._contentWillChangeAfterElementInserted);
     this.addObserver('content', this, this._contentDidChangeAfterElementInserted);
