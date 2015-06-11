@@ -1,5 +1,12 @@
 # ivy-sortable
 
+## 1.0.0-beta.5
+
+* Add `handle` option (@ToddSmithSalter).
+* Upgrade to ember-cli 0.2.7.
+* Fix reference to `_parentView`, so action triggering works in Ember 1.13+.
+* Pull jQuery UI options into a `uiOptions` concatenated property.
+
 ## 1.0.0-beta.4
 
 * Add repo URL to package.json.
