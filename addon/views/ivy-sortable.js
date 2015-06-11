@@ -8,10 +8,26 @@ export default Ember.CollectionView.extend(Ember.TargetActionSupport, {
   concatenatedProperties: ['uiOptions'],
 
   uiOptions: [
-    'axis', 'containment', 'cursor', 'cursorAt', 'delay', 'disabled',
-    'distance', 'forceHelperSize', 'forcePlaceholderSize', 'grid', 'handle',
-    'helper', 'opacity', 'placeholder', 'revert', 'scroll',
-    'scrollSensitivity', 'scrollSpeed', 'tolerance', 'zIndex'
+    'axis',
+    'containment',
+    'cursor',
+    'cursorAt',
+    'delay',
+    'disabled',
+    'distance',
+    'forceHelperSize',
+    'forcePlaceholderSize',
+    'grid',
+    'handle',
+    'helper',
+    'opacity',
+    'placeholder',
+    'revert',
+    'scroll',
+    'scrollSensitivity',
+    'scrollSpeed',
+    'tolerance',
+    'zIndex'
   ],
 
   arrayDidChangeAfterElementInserted: function() {
