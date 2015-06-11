@@ -105,9 +105,9 @@ export default Ember.CollectionView.extend(Ember.TargetActionSupport, {
   },
 
   targetObject: Ember.computed(function() {
-    var parentView = this.get('_parentView');
+    var parentView = this.get('parentView');
     return parentView ? parentView.get('controller') : null;
-  }).property('_parentView'),
+  }).property('parentView'),
 
   _bindSortableOption: function(key) {
     this.addObserver(key, this, this._optionDidChange);
