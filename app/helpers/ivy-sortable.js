@@ -1,3 +1,1 @@
-import ivySortableHelper from 'ivy-sortable/helpers/ivy-sortable';
-
-export default ivySortableHelper;
+export { default } from 'ivy-sortable/helpers/ivy-sortable';
