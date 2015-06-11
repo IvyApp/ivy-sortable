@@ -2,7 +2,7 @@
 
 ## 1.0.0-beta.5
 
-* Add `handle` option (@ToddSmithSalter).
+* Add `handle` option. [@ToddSmithSalter](https://github.com/ToddSmithSalter)
 * Upgrade to ember-cli 0.2.7.
 * Fix reference to `_parentView`, so action triggering works in Ember 1.13+.
 * Pull jQuery UI options into a `uiOptions` concatenated property.
