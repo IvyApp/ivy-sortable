@@ -34,9 +34,6 @@ export default Ember.CollectionView.extend(Ember.TargetActionSupport, {
     Ember.run.scheduleOnce('afterRender', this, this._refreshSortable);
   },
 
-  arrayWillChangeAfterElementInserted: function() {
-  },
-
   destroySortable: Ember.on('willDestroyElement', function() {
     this._contentWillChangeAfterElementInserted();
 
@@ -146,8 +143,7 @@ export default Ember.CollectionView.extend(Ember.TargetActionSupport, {
 
     if (content) {
       content.addArrayObserver(this, {
-        didChange: 'arrayDidChangeAfterElementInserted',
-        willChange: 'arrayWillChangeAfterElementInserted'
+        didChange: 'arrayDidChangeAfterElementInserted'
       });
     }
 
@@ -160,13 +156,9 @@ export default Ember.CollectionView.extend(Ember.TargetActionSupport, {
 
     if (content) {
       content.removeArrayObserver(this, {
-        didChange: 'arrayDidChangeAfterElementInserted',
-        willChange: 'arrayWillChangeAfterElementInserted'
+        didChange: 'arrayDidChangeAfterElementInserted'
       });
     }
-
-    var len = content ? Ember.get(content, 'length') : 0;
-    this.arrayWillChangeAfterElementInserted(content, 0, len);
   },
 
   _optionDidChange: function(sender, key) {
