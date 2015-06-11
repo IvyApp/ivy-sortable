@@ -1,3 +1,1 @@
-import IvySortableView from 'ivy-sortable/views/ivy-sortable';
-
-export default IvySortableView;
+export { default } from 'ivy-sortable/views/ivy-sortable';

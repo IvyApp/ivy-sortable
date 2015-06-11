@@ -33,13 +33,13 @@ moduleFor('view:ivy-sortable', 'view:ivy-sortable', {
   }
 });
 
-test('should render the template for each item in an array', function() {
+test('should render the template for each item in an array', function(assert) {
   var items = view.$('li.ui-sortable-handle');
-  equal(items.length, 2);
-  equal(items.text(), 'TyrionCersei');
+  assert.equal(items.length, 2);
+  assert.equal(items.text(), 'TyrionCersei');
 });
 
-test('should update the view if content is replaced', function() {
+test('should update the view if content is replaced', function(assert) {
   Ember.run(function() {
     view.set('content', Ember.A([
       { name: 'Joffrey' },
@@ -48,39 +48,39 @@ test('should update the view if content is replaced', function() {
   });
 
   var items = view.$('li.ui-sortable-handle');
-  equal(items.length, 2);
-  equal(items.text(), 'JoffreySansa');
+  assert.equal(items.length, 2);
+  assert.equal(items.text(), 'JoffreySansa');
 });
 
-test('should update the view if an item is added', function() {
+test('should update the view if an item is added', function(assert) {
   Ember.run(function() {
     people.pushObject({ name: 'Tywin' });
   });
 
-  equal(view.$().text(), 'TyrionCerseiTywin');
+  assert.equal(view.$().text(), 'TyrionCerseiTywin');
 });
 
-test('should update the view if an item is removed', function() {
+test('should update the view if an item is removed', function(assert) {
   Ember.run(function() {
     people.removeAt(0);
   });
 
-  equal(view.$().text(), 'Cersei');
+  assert.equal(view.$().text(), 'Cersei');
 });
 
-test('should update the view if an item is replaced', function() {
+test('should update the view if an item is replaced', function(assert) {
   Ember.run(function() {
     people.removeAt(0);
     people.insertAt(0, { name: 'Jaime' });
   });
 
-  equal(view.$().text(), 'JaimeCersei');
+  assert.equal(view.$().text(), 'JaimeCersei');
 });
 
-test('should not cause Morph errors if an item is dragged and then moved', function() {
+test('should not cause Morph errors if an item is dragged and then moved', function(assert) {
   view.$('li:eq(0)').simulate('drag', { dy: 22 });
 
-  equal(view.$().text(), 'CerseiTyrion');
+  assert.equal(view.$().text(), 'CerseiTyrion');
 
   Ember.run(function() {
     var tyrion = people.objectAt(1);
@@ -88,42 +88,42 @@ test('should not cause Morph errors if an item is dragged and then moved', funct
     people.insertAt(0, tyrion);
   });
 
-  equal(view.$().text(), 'TyrionCersei');
+  assert.equal(view.$().text(), 'TyrionCersei');
 });
 
-test('should update the view if an item is dragged', function() {
+test('should update the view if an item is dragged', function(assert) {
   view.$('li:eq(0)').simulate('drag', { dy: 22 });
 
-  equal(view.$().text(), 'CerseiTyrion');
+  assert.equal(view.$().text(), 'CerseiTyrion');
 });
 
-test('should update the content if an item is dragged', function() {
+test('should update the content if an item is dragged', function(assert) {
   view.$('li:eq(0)').simulate('drag', { dy: 22 });
 
-  deepEqual(people.mapBy('name'), ['Cersei', 'Tyrion']);
+  assert.deepEqual(people.mapBy('name'), ['Cersei', 'Tyrion']);
 });
 
-test('should become disabled if the disabled attribute is true', function() {
+test('should become disabled if the disabled attribute is true', function(assert) {
   Ember.run(function() { view.set('disabled', true); });
   view.$('li:eq(0)').simulate('drag', { dy: 22 });
 
-  equal(view.$().text(), 'TyrionCersei', 'setting disabled to true disables dragging');
+  assert.equal(view.$().text(), 'TyrionCersei', 'setting disabled to true disables dragging');
 
   Ember.run(function() { view.set('disabled', false); });
   view.$('li:eq(0)').simulate('drag', { dy: 22 });
 
-  equal(view.$().text(), 'CerseiTyrion', 'setting disabled to false enables dragging');
+  assert.equal(view.$().text(), 'CerseiTyrion', 'setting disabled to false enables dragging');
 });
 
-test('should trigger moved action after successful drag', function() {
-  expect(3);
+test('should trigger moved action after successful drag', function(assert) {
+  assert.expect(3);
 
   Ember.run(function() {
     containerView.set('controller', Ember.Object.create({
       moved: function(item, oldIndex, newIndex) {
-        strictEqual(item, people.objectAt(1));
-        equal(oldIndex, 0);
-        equal(newIndex, 1);
+        assert.strictEqual(item, people.objectAt(1));
+        assert.equal(oldIndex, 0);
+        assert.equal(newIndex, 1);
       }
     }));
   });
@@ -131,28 +131,28 @@ test('should trigger moved action after successful drag', function() {
   view.$('li:eq(0)').simulate('drag', { dy: 22 });
 });
 
-test('should not refresh after destruction', function() {
-  expect(1);
+test('should not refresh after destruction', function(assert) {
+  assert.expect(1);
 
   Ember.run(function() {
     people.pushObject({ name: 'Arya' });
     containerView.destroy();
   });
 
-  ok(true, 'no error was thrown');
+  assert.ok(true, 'no error was thrown');
 });
 
 function optionTest(key, beforeValue, afterValue) {
-  test('should update jQuery UI ' + key + ' option when ' + key + ' property changes', function() {
-    equal(view.$().sortable('option', key), beforeValue,
-          'precond - initial value of ' + key + ' option is correct');
+  test('should update jQuery UI ' + key + ' option when ' + key + ' property changes', function(assert) {
+    assert.equal(view.$().sortable('option', key), beforeValue,
+                 'precond - initial value of ' + key + ' option is correct');
 
     Ember.run(function() {
       view.set(key, afterValue);
     });
 
-    equal(view.$().sortable('option', key), afterValue,
-          key + ' option is updated after ' + key + ' property is changed');
+    assert.equal(view.$().sortable('option', key), afterValue,
+                 key + ' option is updated after ' + key + ' property is changed');
   });
 }
 
@@ -166,6 +166,7 @@ optionTest('distance', 1, 5);
 optionTest('forceHelperSize', false, true);
 optionTest('forcePlaceholderSize', false, true);
 optionTest('grid', false, [20, 10]);
+optionTest('handle', false, '.handle');
 optionTest('helper', 'original', 'clone');
 optionTest('opacity', false, 0.5);
 optionTest('placeholder', false, 'sortable-placeholder');

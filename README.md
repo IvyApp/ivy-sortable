@@ -2,8 +2,7 @@
 
 [![Build Status](https://travis-ci.org/IvyApp/ivy-sortable.svg?branch=master)](https://travis-ci.org/IvyApp/ivy-sortable)
 
-An [Ember](http://emberjs.com) component for
-[jQuery UI's Sortable Widget](http://jqueryui.com/sortable/).
+An [Ember](http://emberjs.com) component for [jQuery UI's Sortable Widget](http://jqueryui.com/sortable/).
 
 ## Installation
 
@@ -14,8 +13,7 @@ npm install --save-dev ivy-sortable
 ember generate ivy-sortable
 ```
 
-Or if you aren't using ember-cli, you can use this library as a standalone
-[Bower](http://bower.io/) package:
+Or if you aren't using ember-cli, you can use this library as a standalone [Bower](http://bower.io/) package:
 
 ```sh
 bower install --save ivy-sortable
@@ -33,10 +31,7 @@ Use the `ivy-sortable` view with Ember's built-in `collection` helper.
 {{/collection}}
 ```
 
-This will output a sortable list, and dragging and dropping items will reorder
-them in the corresponding array (in this case, `people`). There is also
-a `moved` action that will fire after an item has been moved, in case you want
-to take further action:
+This will output a sortable list, and dragging and dropping items will reorder them in the corresponding array (in this case, `people`). There is also a `moved` action that will fire after an item has been moved, in case you want to take further action:
 
 ```handlebars
 {{#collection content=people moved="movePerson"}}
@@ -44,8 +39,7 @@ to take further action:
 {{/collection}}
 ```
 
-In this case the `movePerson` handler will be called with the item that has
-been moved, and its old and new index:
+In this case the `movePerson` handler will be called with the item that has been moved, and its old and new index:
 
 ```js
 App.ApplicationController = Ember.Controller.extend({
@@ -57,34 +51,44 @@ App.ApplicationController = Ember.Controller.extend({
 });
 ```
 
-The following
-[jQuery UI Sortable options](http://api.jqueryui.com/sortable/#options) are
-supported:
+The following [jQuery UI Sortable options](http://api.jqueryui.com/sortable/#options) are supported:
 
   * `axis`
   * `containment`
-  * `cursor`
   * `cursorAt`
+  * `cursor`
   * `delay`
   * `disabled`
   * `distance`
   * `forceHelperSize`
   * `forcePlaceholderSize`
   * `grid`
+  * `handle`
   * `helper`
   * `opacity`
   * `placeholder`
   * `revert`
-  * `scroll`
   * `scrollSensitivity`
   * `scrollSpeed`
+  * `scroll`
   * `tolerance`
   * `zIndex`
 
+If there's an option that you need that isn't supported, you can easily add it in your own app by extending from 'ivy-sortable/views/ivy-sortable' and adding it to the `uiOptions` property like so:
+
+```js
+import IvySortableView from 'ivy-sortable/views/ivy-sortable';
+
+export default IvySortableView.extend({
+  uiOptions: [
+    'someOtherOption'
+  ]
+});
+```
+
 ## Contributing
 
-Fork this repo, make a new branch, and send a pull request. Make sure your
-change is tested or it won't be merged.
+Fork this repo, make a new branch, and send a pull request. Make sure your change is tested or it won't be merged.
 
 To run tests:
 

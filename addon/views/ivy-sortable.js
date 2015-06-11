@@ -5,11 +5,33 @@ export default Ember.CollectionView.extend(Ember.TargetActionSupport, {
 
   tagName: 'ul',
 
+  concatenatedProperties: ['uiOptions'],
+
+  uiOptions: [
+    'axis',
+    'containment',
+    'cursor',
+    'cursorAt',
+    'delay',
+    'disabled',
+    'distance',
+    'forceHelperSize',
+    'forcePlaceholderSize',
+    'grid',
+    'handle',
+    'helper',
+    'opacity',
+    'placeholder',
+    'revert',
+    'scroll',
+    'scrollSensitivity',
+    'scrollSpeed',
+    'tolerance',
+    'zIndex'
+  ],
+
   arrayDidChangeAfterElementInserted: function() {
     Ember.run.scheduleOnce('afterRender', this, this._refreshSortable);
-  },
-
-  arrayWillChangeAfterElementInserted: function() {
   },
 
   destroySortable: Ember.on('willDestroyElement', function() {
@@ -30,12 +52,7 @@ export default Ember.CollectionView.extend(Ember.TargetActionSupport, {
 
     this.$().sortable(opts);
 
-    Ember.EnumerableUtils.forEach([
-      'axis', 'containment', 'cursor', 'cursorAt', 'delay', 'disabled',
-      'distance', 'forceHelperSize', 'forcePlaceholderSize', 'grid', 'helper',
-      'opacity', 'placeholder', 'revert', 'scroll', 'scrollSensitivity',
-      'scrollSpeed', 'tolerance', 'zIndex'
-    ], this._bindSortableOption, this);
+    Ember.EnumerableUtils.forEach(this.get('uiOptions'), this._bindSortableOption, this);
 
     Ember.addBeforeObserver(this, 'content', this, this._contentWillChangeAfterElementInserted);
     this.addObserver('content', this, this._contentDidChangeAfterElementInserted);
@@ -105,9 +122,9 @@ export default Ember.CollectionView.extend(Ember.TargetActionSupport, {
   },
 
   targetObject: Ember.computed(function() {
-    var parentView = this.get('_parentView');
+    var parentView = this.get('parentView');
     return parentView ? parentView.get('controller') : null;
-  }).property('_parentView'),
+  }).property('parentView'),
 
   _bindSortableOption: function(key) {
     this.addObserver(key, this, this._optionDidChange);
@@ -126,8 +143,7 @@ export default Ember.CollectionView.extend(Ember.TargetActionSupport, {
 
     if (content) {
       content.addArrayObserver(this, {
-        didChange: 'arrayDidChangeAfterElementInserted',
-        willChange: 'arrayWillChangeAfterElementInserted'
+        didChange: 'arrayDidChangeAfterElementInserted'
       });
     }
 
@@ -140,13 +156,9 @@ export default Ember.CollectionView.extend(Ember.TargetActionSupport, {
 
     if (content) {
       content.removeArrayObserver(this, {
-        didChange: 'arrayDidChangeAfterElementInserted',
-        willChange: 'arrayWillChangeAfterElementInserted'
+        didChange: 'arrayDidChangeAfterElementInserted'
       });
     }
-
-    var len = content ? Ember.get(content, 'length') : 0;
-    this.arrayWillChangeAfterElementInserted(content, 0, len);
   },
 
   _optionDidChange: function(sender, key) {
