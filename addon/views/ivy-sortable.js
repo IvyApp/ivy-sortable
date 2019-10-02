@@ -40,7 +40,7 @@ export default Ember.CollectionView.extend(Ember.TargetActionSupport, {
     Ember.removeBeforeObserver(this, 'content', this, this._contentWillChangeAfterElementInserted);
     this.removeObserver('content', this, this._contentDidChangeAfterElementInserted);
 
-    this.$().sortable('destroy');
+    this.element.addEventListener('destroy');
   }),
 
   initSortable: Ember.on('didInsertElement', function() {
@@ -50,7 +50,7 @@ export default Ember.CollectionView.extend(Ember.TargetActionSupport, {
       opts[callback] = Ember.run.bind(this, callback);
     }, this);
 
-    this.$().sortable(opts);
+    this.element.addEventListener(opts);
 
     Ember.EnumerableUtils.forEach(this.get('uiOptions'), this._bindSortableOption, this);
 
@@ -116,7 +116,7 @@ export default Ember.CollectionView.extend(Ember.TargetActionSupport, {
     // Ember.CollectionView wants to control the DOM, so make sure jQuery UI
     // isn't moving elements around without it knowing. Calling cancel here
     // will revert the item to its prior position.
-    this.$().sortable('cancel');
+    this.element.addEventListener('cancel');
 
     this.move(oldIndex, newIndex);
   },
@@ -162,11 +162,11 @@ export default Ember.CollectionView.extend(Ember.TargetActionSupport, {
   },
 
   _optionDidChange: function(sender, key) {
-    this.$().sortable('option', key, this.get(key));
+    this.element.addEventListener('option', key, this.get(key));
   },
 
   _refreshSortable: function() {
     if (this.isDestroying) { return; }
-    this.$().sortable('refresh');
+    this.element.addEventListener('refresh');
   }
 });
